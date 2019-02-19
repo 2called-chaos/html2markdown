@@ -37,7 +37,8 @@ module HTML2Markdown
       return '' if node['style'] and node['style'] =~ /display:\s*none/
       # default parse
       case node.name.downcase
-      when 'i'
+      when 'i', 'em'
+        result << "*#{contents}*\n"
       when 'script'
       when 'style'
       when 'li'
@@ -48,7 +49,7 @@ module HTML2Markdown
         end
       when 'p'
         result << "\n#{contents}\n"
-      when 'strong'
+      when 'strong', 'b'
         result << "**#{contents}**\n"
       when 'h1'
         result << "# #{contents}\n"
